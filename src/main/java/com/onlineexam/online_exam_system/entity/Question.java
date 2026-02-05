@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
+@DiscriminatorColumn(name = "question_type")
 public abstract class Question {
 
     @Id
@@ -22,9 +22,12 @@ public abstract class Question {
         this.points = points;
     }
 
-    public int getPoints() {
-        return points;
-    }
+    public Long getId() { return id; }
+    public String getText() { return text; }
+    public int getPoints() { return points; }
+
+    public void setText(String text) { this.text = text; }
+    public void setPoints(int points) { this.points = points; }
 
     public abstract boolean checkAnswer(List<String> answers);
 }
